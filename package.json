@@ -1,5 +1,5 @@
 {
-  "name": "awesomeslashcommand",
+  "name": "vaultkeeper",
   "version": "1.0.0",
   "description": "The awesomest slash command evar.",
   "main": "index.js",
@@ -25,8 +25,9 @@
     "node": "5.1.1"
   },
   "dependencies": {
-    "botkit": "0.0.5",
+    "botkit": "^0.7.0",
     "botkit-storage-mongo": "^1.0.2",
+    "jquery": "^3.3.1",
     "mongodb": "^1.4.39"
   }
 }
