@@ -109,13 +109,14 @@ controller.on('slash_command', function (slashCommand, message) {
                     var jsonData = data;
                     var jsonParsed = JSON.parse(jsonData);
                     var cards = jsonParsed.cards;
+                    console.log("command used: " + message.text); // For feedback to the server
                     for (i=0; i < cards.length; i++) {
                         if (cards[i].card_title == message.text) {
                             slashCommand.replyPublic(message, cards[i].front_image);
-                            return;
+                            break;
                         }
                         else {
-                            slashCommand.replyPrivate(message, "I could not locat the card specified.");
+                            slashCommand.replyPrivate(message, "I could not locate the card specified.");
                         }
                     }
                 }
