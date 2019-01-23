@@ -109,17 +109,21 @@ controller.on('slash_command', function (slashCommand, message) {
                     var jsonData = data;
                     var jsonParsed = JSON.parse(jsonData);
                     var cards = jsonParsed.cards;
+                    var success = false;
+                    var text = message.text;
+                    
                     console.log("command used: " + message.text); // For feedback to the server
+                    
                     for (i=0; i < cards.length; i++) {
                         var title = cards[i].card_title;
-                        var regex = "/" + title + "/i";
-                        if (title.match(regex) == message.text) {
+                        if (title.toLowerCase() == text.toLowerCase()) {
                             slashCommand.replyPublic(message, cards[i].front_image);
+                            success = true;
                             break;
                         }
-                        else {
-                            slashCommand.replyPrivate(message, "I could not locate the card specified.");
-                        }
+                    }
+                    if (success === false) {
+                        slashCommand.replyPrivate(message, "I could not locate the card specified.");
                     }
                 }
             );
