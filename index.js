@@ -111,7 +111,9 @@ controller.on('slash_command', function (slashCommand, message) {
                     var cards = jsonParsed.cards;
                     console.log("command used: " + message.text); // For feedback to the server
                     for (i=0; i < cards.length; i++) {
-                        if (cards[i].card_title == message.text) {
+                        var title = cards[i].card_title;
+                        var regex = "/" + title + "/i";
+                        if (title.match(regex) == message.text) {
                             slashCommand.replyPublic(message, cards[i].front_image);
                             break;
                         }
