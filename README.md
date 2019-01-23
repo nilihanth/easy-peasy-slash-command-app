@@ -4,6 +4,8 @@ inside the card list JSON file provided by keyforgegame.com, and then post it in
 
 As of right now, it does not do any form of advanced search. It even requires you to spell the card name correctly
 (although you can ignore case). I would like to improve upon the search better in future updates.
+
+**note:** run `npm install` after cloning
 # About
 Using the [KeyForge API](https://www.keyforgegame.com/api/decks/?page=1&links=cards) to make the local JSON file.
 
