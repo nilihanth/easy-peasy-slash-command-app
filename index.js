@@ -101,23 +101,21 @@ controller.on('slash_command', function (slashCommand, message) {
                     "Use /card [name of card] to get the card image.");
                 return;
             }
-            /* https://www.keyforgegame.com/api/decks/?page=1&links=cards is the source of the JSON file.
-               Load the JSON and find the card_title being looked for. This will need future adjustments
-               for making the command case-insensitive. */
-            fs.readFile('keyforge_cardlist.json',
+            /* https://github.com/keyforg/keyforge-cards-json is the source of the Powershell script 
+               that creates the cards.json file I then copied here. */
+            fs.readFile('cards.json',
                 function(err, data) {
                     var jsonData = data;
                     var jsonParsed = JSON.parse(jsonData);
-                    var cards = jsonParsed.cards;
                     var success = false;
                     var text = message.text;
                     
                     console.log("command used: " + message.text); // For feedback to the server
                     
-                    for (i=0; i < cards.length; i++) {
-                        var title = cards[i].card_title;
+                    for (i=0; i < jsonParsed.length; i++) {
+                        var title = jsonParsed[i].card_title;
                         if (title.toLowerCase() == text.toLowerCase()) {
-                            slashCommand.replyPublic(message, cards[i].front_image);
+                            slashCommand.replyPublic(message, jsonParsed[i].front_image);
                             success = true;
                             break;
                         }
